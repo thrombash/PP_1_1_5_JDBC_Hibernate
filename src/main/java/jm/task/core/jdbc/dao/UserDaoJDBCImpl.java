@@ -13,7 +13,7 @@ public class UserDaoJDBCImpl implements UserDao {
 
     }
 
-    //работает
+    @Override
     public void createUsersTable() {
         try (Connection connection = Util.getConnection();
             Statement statement = connection.createStatement()){
@@ -24,7 +24,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-    //работает
+    @Override
     public void dropUsersTable() {
         try (Connection connection = Util.getConnection();
              Statement statement = connection.createStatement()) {
@@ -34,7 +34,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
-
+    @Override
     public void saveUser(String name, String lastName, byte age) {
         String sql = "insert into users(name, lastname, age) values(?, ?, ?)";
 
@@ -49,6 +49,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public void removeUserById(long id) {
         String sql = String.format("delete from users where id = %s", id);
 
@@ -60,6 +61,7 @@ public class UserDaoJDBCImpl implements UserDao {
         }
     }
 
+    @Override
     public List<User> getAllUsers() {
         String sql = "select * from users";
         List<User> userList = new ArrayList<>();
@@ -85,6 +87,7 @@ public class UserDaoJDBCImpl implements UserDao {
         return userList;
     }
 
+    @Override
     public void cleanUsersTable() {
         String sql = "truncate users";
 
